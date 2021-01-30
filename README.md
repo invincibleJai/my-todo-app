@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# My TODO App in React
+
+Build and run TODO App with React with managing state with LocalStorage, Context API or Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
