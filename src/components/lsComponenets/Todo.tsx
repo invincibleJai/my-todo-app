@@ -20,7 +20,7 @@ const Todo: React.FC = () => {
     }
     const addTaskToList = () => {
         setTodoListLS([...todoListLS, todoItem]);
-        setTodoItem({ id: Date.now(), text: '', completed: false });
+        setTodoItem(defaultTodoItem);
     }
     const removeItem = (id: number) => {
         const newTodoList = todoListLS?.filter((d:{id:number}) => d.id !== id);
