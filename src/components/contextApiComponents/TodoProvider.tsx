@@ -1,6 +1,6 @@
 import React from 'react';
 import { TodoItemProp } from '../todo/TodoList';
-import TodoReducer from './TodoReducer';
+import TodoReducer from '../reducers/TodoReducer';
 
 type TodoContextProps = {
     state : {todoList: TodoItemProp[]};

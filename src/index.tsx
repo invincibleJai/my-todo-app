@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reportWebVitals from './reportWebVitals';
-import TodoReducer from './components/reduxComponents/TodoReducer';
+import TodoReducer from './components/reducers/TodoReducer';
 import App from './App';
 
 import './index.css';

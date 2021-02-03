@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Header from './components/Header';
-import Todo from './components/lsComponenets/Todo';
+import Todo from './components/lsComponents/Todo';
 import TodoRedux from './components/reduxComponents/TodoRedux';
 import TodoContextApi from './components/contextApiComponents/TodoContextApi';
 import TodoProvider from './components/contextApiComponents/TodoProvider';

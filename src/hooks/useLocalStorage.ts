@@ -8,20 +8,6 @@ export const useLocalStorage = (key: string, defauValue: any)  => {
         return lsData ? JSON.parse(lsData) : defauValue
     })
 
-    // const updateStorageData = React.useCallback(() => {
-    //     if(localStorage.getItem(keyRef.current) != null && localStorage.getItem(keyRef.current) !== data) {
-            
-    //     }
-    // }, [data])
-
-    // React.useEffect(() => {
-    //     window.addEventListener('storage', updateStorageData)
-
-    //     return () => {
-    //         window.removeEventListener('storage', updateStorageData)
-    //     }
-    // },[updateStorageData])
-
     const updateData = React.useCallback((newValue) => {
         setData(newValue)
         localStorage.setItem(keyRef.current, JSON.stringify(newValue));

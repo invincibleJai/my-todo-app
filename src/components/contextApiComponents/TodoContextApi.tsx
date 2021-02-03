@@ -1,5 +1,7 @@
 import React from 'react';
+import { ADD_TODO_ACTION, REMOVE_TODO_ACTION, UPDATE_TODO_ACTION } from '../../constants';
 import Footer from '../Footer';
+import FilterReducer from '../reducers/FilterReducer';
 import AddTodo from '../todo/AddTodo';
 import TodoList, { TodoItemProp } from '../todo/TodoList';
 import { TodoContext } from './TodoProvider';
@@ -7,13 +9,13 @@ import { TodoContext } from './TodoProvider';
 const defaultTodoItem: TodoItemProp = { id: Date.now(), text: '', completed: false };
 
 const TodoContextApi: React.FC = () => {
-    const {state : {todoList}, dispatch} = React.useContext(TodoContext);
+    const { state: { todoList }, dispatch } = React.useContext(TodoContext);
     const [todoItem, setTodoItem] = React.useState(defaultTodoItem);
     const [todoListData, setTodoListData] = React.useState(todoList);
 
     React.useEffect(() => {
         setTodoListData(todoList);
-    },[todoList])
+    }, [todoList])
 
     const updateTodoItem = (text: string) => {
         setTodoItem({
@@ -24,37 +26,26 @@ const TodoContextApi: React.FC = () => {
     }
     const addTaskToList = () => {
         dispatch({
-            type:'ADD_TODO',
+            type: ADD_TODO_ACTION,
             payload: todoItem
         });
         setTodoItem(defaultTodoItem);
     }
-    const removeItem = (id:number) => {
+    const removeItem = (id: number) => {
         dispatch({
-            type:'REMOVE_TODO',
-            payload: {id}
+            type: REMOVE_TODO_ACTION,
+            payload: { id }
         })
     }
     const toggleItemStatus = (id: number) => {
         dispatch({
-            type: 'UPDATE_TODO',
-            payload: {id}
+            type: UPDATE_TODO_ACTION,
+            payload: { id }
         })
     }
-    const filterTodoList = (type:string) => {
-        switch(type) {
-            case 'active':
-                const activeTodo = todoList.filter((d) => !d.completed);
-                setTodoListData(activeTodo);
-                break;
-            case 'completed':
-                const completedTodo = todoList.filter((d) => d.completed);
-                setTodoListData(completedTodo);
-                break;
-            default:
-                setTodoListData(todoList);
-                break;
-        }
+    const filterTodoList = (type: string) => {
+        const filteredList = FilterReducer(todoList, {type});
+        setTodoListData(filteredList)
 
     }
 
@@ -62,7 +53,7 @@ const TodoContextApi: React.FC = () => {
         <>
             <AddTodo todoItem={todoItem} updateTodoItem={updateTodoItem} addTaskToList={addTaskToList} />
             <TodoList listData={todoListData} removeItem={removeItem} toggleItemStatus={toggleItemStatus} />
-            <Footer item={todoListData.length} storage="Context API" filterTodoList={filterTodoList}/>
+            <Footer item={todoListData.length} storage="Context API" filterTodoList={filterTodoList} />
         </>
     )
 }
